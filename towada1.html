@@ -4,81 +4,709 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>토와다 호수 · 오이라세 계류 여행 가이드북</title>
+    <title>토와다 호수·오이라세 계류 여행 가이드북</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+
+```
+    * {
+        font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px 0;
+    }
+
+    .main-container {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        overflow: hidden;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .header-section {
+        background: linear-gradient(135deg, #2c3e50 0%, #4a6741 100%);
+        color: white;
+        padding: 4rem 3rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .header-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,0 Q50,20 100,0 L100,100 L0,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+        background-size: cover;
+    }
+
+    .header-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .main-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-size: 1.4rem;
+        opacity: 0.9;
+        margin-bottom: 3rem;
+        font-weight: 300;
+    }
+
+    .trip-overview {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        background: rgba(255,255,255,0.1);
+        padding: 2rem;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+    }
+
+    .overview-item {
+        text-align: center;
+        padding: 1rem;
+    }
+
+    .overview-label {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        margin-bottom: 0.5rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .overview-value {
+        font-size: 1.3rem;
+        font-weight: 600;
+        line-height: 1.3;
+    }
+
+    .content-section {
+        padding: 3rem;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 2rem;
+        text-align: center;
+        position: relative;
+        padding-bottom: 1rem;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 4px;
+        background: linear-gradient(135deg, #4CAF50, #81C784);
+        border-radius: 2px;
+    }
+
+    .accordion-item {
+        border: none;
+        margin-bottom: 1.5rem;
+        border-radius: 15px !important;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .accordion-header {
+        border-radius: 15px !important;
+    }
+
+    .accordion-button {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border: none;
+        padding: 1.5rem 2rem;
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #2c3e50;
+        border-radius: 15px !important;
+        box-shadow: none;
+        position: relative;
+    }
+
+    .accordion-button:not(.collapsed) {
+        background: linear-gradient(135deg, #4CAF50 0%, #66BB6A 100%);
+        color: white;
+        box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    }
+
+    .accordion-button::after {
+        background-size: 1.5rem;
+    }
+
+    .accordion-button:not(.collapsed)::after {
+        filter: brightness(0) invert(1);
+    }
+
+    .day-badge {
+        background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-right: 1rem;
+        display: inline-block;
+        min-width: 80px;
+        text-align: center;
+    }
+
+    .day-badge.day-1 { background: linear-gradient(135deg, #FF6B6B, #FF8E8E); }
+    .day-badge.day-2 { background: linear-gradient(135deg, #4ECDC4, #7FDBDA); }
+    .day-badge.day-3 { background: linear-gradient(135deg, #45B7D1, #78C5E8); }
+    .day-badge.day-4 { background: linear-gradient(135deg, #F9CA24, #F0B90B); }
+
+    .accordion-body {
+        padding: 2rem;
+        background: #fafafa;
+    }
+
+    .day-date {
+        color: #666;
+        font-size: 1.1rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    .weather-alert {
+        background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+        border: 1px solid #ffc107;
+        border-radius: 10px;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .weather-alert .alert-icon {
+        font-size: 1.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .scenario-section {
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-left: 5px solid #4CAF50;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .scenario-section.rain-scenario {
+        border-left-color: #2196F3;
+    }
+
+    .scenario-title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .scenario-icon {
+        font-size: 1.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .timeline {
+        position: relative;
+        padding-left: 2rem;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, #4CAF50, #81C784);
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 1.5rem;
+        padding-left: 2rem;
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -6px;
+        top: 0.5rem;
+        width: 12px;
+        height: 12px;
+        background: #4CAF50;
+        border-radius: 50%;
+        border: 3px solid white;
+        box-shadow: 0 0 0 3px #4CAF50;
+    }
+
+    .time-stamp {
+        font-weight: 600;
+        color: #4CAF50;
+        margin-right: 1rem;
+        font-size: 1rem;
+    }
+
+    .activity-description {
+        color: #333;
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .transport-info {
+        background: #e3f2fd;
+        color: #1976d2;
+        padding: 0.4rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin: 0.5rem 0;
+        display: inline-block;
+    }
+
+    .locations-section {
+        margin-top: 3rem;
+    }
+
+    .location-card {
+        background: white;
+        border-radius: 15px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        border-left: 5px solid #4CAF50;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .location-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .location-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+    }
+
+    .location-type {
+        color: #666;
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .feature-item {
+        background: #f8f9fa;
+        padding: 1.2rem;
+        border-radius: 10px;
+        border-left: 3px solid #4CAF50;
+    }
+
+    .feature-title {
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+    }
+
+    .tips-section {
+        background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+        border-radius: 20px;
+        padding: 3rem;
+        margin-top: 3rem;
+    }
+
+    .tips-title {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #e65100;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .tip-card {
+        background: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        margin-bottom: 1.5rem;
+        border-left: 4px solid #ff9800;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .tip-title {
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+        .main-title {
+            font-size: 2.5rem;
         }
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+        
+        .content-section {
+            padding: 2rem 1.5rem;
         }
-        /* 스타일 내용들은 그대로 유지 */
-    </style>
+        
+        .accordion-button {
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .accordion-body {
+            padding: 1.5rem;
+        }
+        
+        .timeline {
+            padding-left: 1.5rem;
+        }
+        
+        .timeline-item {
+            padding-left: 1.5rem;
+        }
+    }
+</style>
+```
+
 </head>
 <body>
-    <div class="container">
-        <header class="header">
+    <div class="main-container">
+        <!-- 헤더 섹션 -->
+        <div class="header-section">
             <div class="header-content">
-                <h1>🌊 토와다 호수 · 오이라세 계류 여행</h1>
-                <p class="header-subtitle">아오모리 현의 아름다운 자연을 만끽하는 3박 4일 여행</p>
+                <h1 class="main-title">🌊 토와다 호수·오이라세 계류 여행</h1>
+                <p class="subtitle">아오모리현의 아름다운 자연을 만끽하는 3박 4일 여행</p>
 
-                <div class="trip-info">
-                    <div class="info-item">
-                        <div class="info-label">여행 기간</div>
-                        <div class="info-value">6월 12일 ~ 15일</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-label">총 일정</div>
-                        <div class="info-value">3박 4일</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-label">주요 방문지</div>
-                        <div class="info-value">하치노헤 · 토와다 호수 · 오이라세 계류</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-label">숙박지</div>
-                        <div class="info-value">하치노헤 · 토와다 호수</div>
+```
+            <div class="trip-overview">
+                <div class="overview-item">
+                    <div class="overview-label">여행 기간</div>
+                    <div class="overview-value">6월 12일~15일</div>
+                </div>
+                <div class="overview-item">
+                    <div class="overview-label">총 일수</div>
+                    <div class="overview-value">3박 4일</div>
+                </div>
+                <div class="overview-item">
+                    <div class="overview-label">주요 스팟</div>
+                    <div class="overview-value">하치노헤·토와다 호수<br>오이라세 계류</div>
+                </div>
+                <div class="overview-item">
+                    <div class="overview-label">숙박지</div>
+                    <div class="overview-value">하치노헤·토와다 호수</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 메인 콘텐츠 -->
+    <div class="content-section">
+        <h2 class="section-title">📅 상세 일정</h2>
+        
+        <!-- 아코디언 일정 -->
+        <div class="accordion" id="scheduleAccordion">
+            
+            <!-- 1일차 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="day1Header">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#day1Collapse">
+                        <span class="day-badge day-1">1일차</span>
+                        <span>도쿄 → 하치노헤 이동일 (목요일)</span>
+                    </button>
+                </h2>
+                <div id="day1Collapse" class="accordion-collapse collapse show" data-bs-parent="#scheduleAccordion">
+                    <div class="accordion-body">
+                        <div class="day-date">
+                            <i class="fas fa-calendar-alt"></i> 6월 12일 (목요일)
+                        </div>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <span class="time-stamp">20:22</span>
+                                <span class="activity-description">우에노역 출발</span>
+                                <div class="transport-info">🚄 신칸센 하야부사</div>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time-stamp">23:07</span>
+                                <span class="activity-description">하치노헤역 도착</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time-stamp">23:30</span>
+                                <span class="activity-description">호텔 메츠 하치노헤 체크인 (조식 포함)</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </header>
-        <main class="content">
-            <section class="section">
-                <h2 class="section-title">📅 상세 일정</h2>
-                
-                <!-- 1일차 -->
-                <div class="day-card">
-                    <div class="day-header">
-                        <div class="day-number">1</div>
-                        <div class="day-title">도쿄 → 하치노헤 이동</div>
-                        <div class="day-date">6월 12일 (월)</div>
-                    </div>
-                    
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <span class="time">20:22</span>
-                            <span class="activity">우에노역 출발</span>
-                            <div class="transport">🚄 신칸센 하야부사</div>
+
+            <!-- 2일차 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="day2Header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day2Collapse">
+                        <span class="day-badge day-2">2일차</span>
+                        <span>오이라세 계류 산책 (금요일)</span>
+                    </button>
+                </h2>
+                <div id="day2Collapse" class="accordion-collapse collapse" data-bs-parent="#scheduleAccordion">
+                    <div class="accordion-body">
+                        <div class="day-date">
+                            <i class="fas fa-calendar-alt"></i> 6월 13일 (금요일)
                         </div>
-                        <div class="timeline-item">
-                            <span class="time">23:07</span>
-                            <span class="activity">하치노헤역 도착</span>
-                        </div>
-                        <div class="timeline-item">
-                            <span class="time">23:30</span>
-                            <span class="activity">호텔 메츠 하치노헤 체크인</span>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <span class="time-stamp">09:30</span>
+                                <span class="activity-description">호텔 메츠 하치노헤 체크아웃</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time-stamp">10:00</span>
+                                <span class="activity-description">하치노헤역 서쪽 출구 출발</span>
+                                <div class="transport-info">🚌 노선버스</div>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time-stamp">11:44</span>
+                                <span class="activity-description">이시가도 도착 · 점심식사 (라멘 또는 소바, 우동)</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time-stamp">오후</span>
+                                <span class="activity-description">오이라세 계류 산책</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time-stamp">15:40</span>
+                                <span class="activity-description">네노쿠치 출발</span>
+                                <div class="transport-info">🚌 버스</div>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time-stamp">16:15</span>
+                                <span class="activity-description">토와다 프린스 호텔 도착 · 체크인</span>
+                            </div>
+                            <div class="timeline-item">
+                                <span class="time-stamp">17:30</span>
+                                <span class="activity-description">저녁식사</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </section>
-            <!-- 이후 내용도 동일하게 번역 -->
-        </main>
-    </div>
-</body>
-</html>
+            </div>
+
+            <!-- 3일차 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="day3Header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day3Collapse">
+                        <span class="day-badge day-3">3일차</span>
+                        <span>토와다 호수 관광 (토요일)</span>
+                    </button>
+                </h2>
+                <div id="day3Collapse" class="accordion-collapse collapse" data-bs-parent="#scheduleAccordion">
+                    <div class="accordion-body">
+                        <div class="day-date">
+                            <i class="fas fa-calendar-alt"></i> 6월 14일 (토요일)
+                        </div>
+                        
+                        <div class="weather-alert">
+                            <span class="alert-icon">🌤️</span>
+                            <strong>날씨에 따라 2가지 플랜이 준비되어 있습니다</strong><br>
+                            ☀️ 6/13 우천·6/14 맑음의 경우 | 🌧️ 6/13·14 양일 우천의 경우
+                        </div>
+
+                        <!-- 맑은 날 플랜 -->
+                        <div class="scenario-section">
+                            <div class="scenario-title">
+                                <span class="scenario-icon">☀️</span>맑은 날 플랜
+                            </div>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <span class="time-stamp">조식 전</span>
+                                    <span class="activity-description">호텔 스태프와 함께 산책 가이드</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">08:30</span>
+                                    <span class="activity-description">토와다 프린스 호텔 출발</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">08:45</span>
+                                    <span class="activity-description">야스미야 도착</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">09:00</span>
+                                    <span class="activity-description">야스미야 출발</span>
+                                    <div class="transport-info">🚌 노선버스</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">09:34</span>
+                                    <span class="activity-description">이시가도 도착 · 오이라세 계류 산책 · 점심식사</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">14:45</span>
+                                    <span class="activity-description">네노쿠치 출발</span>
+                                    <div class="transport-info">🚢 유람선</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">15:35</span>
+                                    <span class="activity-description">야스미야 도착</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">16:00</span>
+                                    <span class="activity-description">야스미야 출발</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">16:15</span>
+                                    <span class="activity-description">토와다 프린스 호텔 도착</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">17:30</span>
+                                    <span class="activity-description">저녁식사</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 비 오는 날 플랜 -->
+                        <div class="scenario-section rain-scenario">
+                            <div class="scenario-title">
+                                <span class="scenario-icon">🌧️</span>비 오는 날 플랜
+                            </div>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <span class="time-stamp">08:30</span>
+                                    <span class="activity-description">토와다 프린스 호텔 출발</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">08:45</span>
+                                    <span class="activity-description">야스미야 도착</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">09:00</span>
+                                    <span class="activity-description">야스미야 출발</span>
+                                    <div class="transport-info">🚌 노선버스</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">10:09</span>
+                                    <span class="activity-description">츠타 온천 도착 · 당일치기 입욕 · 점심식사</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">13:43</span>
+                                    <span class="activity-description">츠타 온천 출발</span>
+                                    <div class="transport-info">🚌 노선버스</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">14:43</span>
+                                    <span class="activity-description">야스미야 도착 · 야스미야 자유 산책</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">16:00</span>
+                                    <span class="activity-description">야스미야 출발</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">16:15</span>
+                                    <span class="activity-description">토와다 프린스 호텔 도착</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">17:30</span>
+                                    <span class="activity-description">저녁식사</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4일차 -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="day4Header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#day4Collapse">
+                        <span class="day-badge day-4">4일차</span>
+                        <span>귀로 · 온천 체험 (일요일)</span>
+                    </button>
+                </h2>
+                <div id="day4Collapse" class="accordion-collapse collapse" data-bs-parent="#scheduleAccordion">
+                    <div class="accordion-body">
+                        <div class="day-date">
+                            <i class="fas fa-calendar-alt"></i> 6월 15일 (일요일)
+                        </div>
+
+                        <!-- 전날 맑았던 경우 -->
+                        <div class="scenario-section">
+                            <div class="scenario-title">
+                                <span class="scenario-icon">♨️</span>전날 맑았던 경우
+                            </div>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <span class="time-stamp">08:20</span>
+                                    <span class="activity-description">토와다 프린스 호텔 체크아웃</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">08:30</span>
+                                    <span class="activity-description">토와다 프린스 출발</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">10:09</span>
+                                    <span class="activity-description">츠타 온천 도착 · 당일치기 입욕 · 점심식사</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">14:39</span>
+                                    <span class="activity-description">츠타 온천 출발</span>
+                                    <div class="transport-info">🚌 노선버스</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">16:29</span>
+                                    <span class="activity-description">신아오모리역 도착 · 간단한 저녁식사</span>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">17:22</span>
+                                    <span class="activity-description">신아오모리 출발</span>
+                                    <div class="transport-info">🚄 신칸센</div>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="time-stamp">20:26</span>
+                                    <span class="activity-description">우에노 도착</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 전날 비가 왔던 경우 -->
+                        <div class="scenario-section rain-scenario">
+                            <div class="scenario-title">
+                                <span class="scenario-icon">🚢</span>전날 비가 왔던 경우
+                            </div>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <span class="time-stamp">조식 전</span>
+                                    <span class="activity-description">호텔 스태
+```
