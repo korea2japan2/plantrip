@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>十和田湖・奥入瀬渓流 旅行ガイドブック</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+```
+    body {
+        font-family: 'Hiragino Sans', 'Yu Gothic', 'Meiryo', sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        background: white;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        min-height: 100vh;
+    }
+
+    .header {
+        background: linear-gradient(135deg, #2c3e50 0%, #4a6741 100%);
+        color: white;
+        padding: 3rem 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M0,0 Q50,20 100,0 L100,100 L0,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+        background-size: cover;
+    }
+
+    .header-content {
+        position: relative;
+        z-index: 1;
+    }
+
+    .header h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .header-subtitle {
+        font-size: 1.3rem;
+        opacity: 0.9;
+        margin-bottom: 2rem;
+    }
+
+    .trip-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        background: rgba(255,255,255,0.1);
+        padding: 1.5rem;
+        border-radius: 10px;
+        backdrop-filter: blur(10px);
+    }
+
+    .info-item {
+        text-align: center;
+    }
+
+    .info-label {
+        font-size: 0.9rem;
+        opacity: 0.8;
+        margin-bottom: 0.5rem;
+    }
+
+    .info-value {
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+
+    .content {
+        padding: 2rem;
+    }
+
+    .section {
+        margin-bottom: 3rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        color: #2c3e50;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 3px solid #4CAF50;
+        position: relative;
+    }
+
+    .section-title::before {
+        content: '';
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+        width: 50px;
+        height: 3px;
+        background: #81C784;
+    }
+
+    .day-card {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        border-radius: 15px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .day-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .day-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+    }
+
+    .day-number {
+        background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+        color: white;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-right: 1rem;
+        box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+    }
+
+    .day-title {
+        font-size: 1.5rem;
+        color: #2c3e50;
+        font-weight: bold;
+    }
+
+    .day-date {
+        color: #666;
+        font-size: 1rem;
+        margin-left: auto;
+    }
+
+    .scenario {
+        background: white;
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-left: 5px solid #4CAF50;
+    }
+
+    .scenario.weather-b {
+        border-left-color: #2196F3;
+    }
+
+    .scenario-title {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+        color: #2c3e50;
+    }
+
+    .weather-icon {
+        display: inline-block;
+        margin-right: 0.5rem;
+    }
+
+    .timeline {
+        position: relative;
+        padding-left: 2rem;
+    }
+
+    .timeline::before {
+        content: '';
+        position: absolute;
+        left: 10px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, #4CAF50, #81C784);
+    }
+
+    .timeline-item {
+        position: relative;
+        margin-bottom: 1rem;
+        padding-left: 1.5rem;
+    }
+
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -6px;
+        top: 0.5rem;
+        width: 12px;
+        height: 12px;
+        background: #4CAF50;
+        border-radius: 50%;
+        border: 3px solid white;
+        box-shadow: 0 0 0 3px #4CAF50;
+    }
+
+    .time {
+        font-weight: bold;
+        color: #4CAF50;
+        margin-right: 1rem;
+    }
+
+    .activity {
+        color: #333;
+    }
+
+    .transport {
+        background: #e3f2fd;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        color: #1976d2;
+        margin: 0.5rem 0;
+        display: inline-block;
+    }
+
+    .location-card {
+        background: white;
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        border-left: 4px solid #4CAF50;
+    }
+
+    .location-name {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+    }
+
+    .location-type {
+        color: #666;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .feature {
+        background: #f8f9fa;
+        padding: 1rem;
+        border-radius: 8px;
+    }
+
+    .feature-title {
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+    }
+
+    .tips-section {
+        background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+        border-radius: 15px;
+        padding: 2rem;
+        margin-top: 2rem;
+    }
+
+    .tips-title {
+        font-size: 1.5rem;
+        color: #e65100;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+    }
+
+    .tip-item {
+        background: white;
+        padding: 1rem;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        border-left: 4px solid #ff9800;
+    }
+
+    .weather-info {
+        background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+        padding: 1rem;
+        border-radius: 10px;
+        margin: 1rem 0;
+    }
+
+    @media (max-width: 768px) {
+        .header h1 {
+            font-size: 2rem;
+        }
+        
+        .day-header {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .day-date {
+            margin-left: 0;
+            margin-top: 0.5rem;
+        }
+        
+        .timeline {
+            padding-left: 1rem;
+        }
+    }
+</style>
+```
+
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <h1>🌊 十和田湖・奥入瀬渓流の旅</h1>
+                <p class="header-subtitle">青森県の美しい自然を満喫する3泊4日の旅</p>
+
+```
+            <div class="trip-info">
+                <div class="info-item">
+                    <div class="info-label">旅行期間</div>
+                    <div class="info-value">6月12日～15日</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">総日数</div>
+                    <div class="info-value">3泊4日</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">主要スポット</div>
+                    <div class="info-value">八戸・十和田湖・奥入瀬渓流</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">宿泊地</div>
+                    <div class="info-value">八戸・十和田湖</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="content">
+        <section class="section">
+            <h2 class="section-title">📅 詳細スケジュール</h2>
+            
+            <!-- 1日目 -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="day-number">1</div>
+                    <div class="day-title">東京→八戸 移動日</div>
+                    <div class="day-date">6月12日（月）</div>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="time">20:22</span>
+                        <span class="activity">上野駅発</span>
+                        <div class="transport">🚄 新幹線はやぶさ</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="time">23:07</span>
+                        <span class="activity">八戸駅着</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="time">23:30</span>
+                        <span class="activity">ホテルメッツ八戸 チェックイン</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2日目 -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="day-number">2</div>
+                    <div class="day-title">奥入瀬渓流散策</div>
+                    <div class="day-date">6月13日（火）</div>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="time">09:30</span>
+                        <span class="activity">ホテルメッツ八戸 チェックアウト</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="time">10:00</span>
+                        <span class="activity">八戸駅西口発</span>
+                        <div class="transport">🚌 路線バス</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="time">11:44</span>
+                        <span class="activity">石ヶ戸着・ランチ（ラーメン・そば・うどん）</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="time">午後</span>
+                        <span class="activity">奥入瀬渓流散策</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="time">15:40</span>
+                        <span class="activity">子ノ口発</span>
+                        <div class="transport">🚌 バス</div>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="time">16:15</span>
+                        <span class="activity">十和田プリンスホテル着・チェックイン</span>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="time">17:30</span>
+                        <span class="activity">夕食</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3日目 -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="day-number">3</div>
+                    <div class="day-title">十和田湖観光</div>
+                    <div class="day-date">6月14日（水）</div>
+                </div>
+                
+                <div class="weather-info">
+                    <strong>📱 天気により2つのプランをご用意</strong><br>
+                    ✡：6/13雨天・6/14晴天の場合 | ◉：6/13・14両日雨天の場合
+                </div>
+
+                <!-- 晴天プラン -->
+                <div class="scenario">
+                    <div class="scenario-title">
+                        <span class="weather-icon">☀️</span>晴天プラン（✡）
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="time">朝食前</span>
+                            <span class="activity">ホテルスタッフによる散策ガイド</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">08:30</span>
+                            <span class="activity">十和田プリンスホテル発</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">08:45</span>
+                            <span class="activity">休屋着</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">09:00</span>
+                            <span class="activity">休屋発</span>
+                            <div class="transport">🚌 路線バス</div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">09:34</span>
+                            <span class="activity">石ヶ戸着・奥入瀬渓流散策・ランチ</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">14:45</span>
+                            <span class="activity">子ノ口発</span>
+                            <div class="transport">🚢 遊覧船</div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">15:35</span>
+                            <span class="activity">休屋着</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">16:00</span>
+                            <span class="activity">休屋発</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">16:15</span>
+                            <span class="activity">十和田プリンスホテル着</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">17:30</span>
+                            <span class="activity">夕食</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 雨天プラン -->
+                <div class="scenario weather-b">
+                    <div class="scenario-title">
+                        <span class="weather-icon">🌧️</span>雨天プラン（◉）
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="time">08:30</span>
+                            <span class="activity">十和田プリンスホテル発</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">08:45</span>
+                            <span class="activity">休屋着</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">09:00</span>
+                            <span class="activity">休屋発</span>
+                            <div class="transport">🚌 路線バス</div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">10:09</span>
+                            <span class="activity">蔦温泉着・日帰り入浴・ランチ</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">13:43</span>
+                            <span class="activity">蔦温泉発</span>
+                            <div class="transport">🚌 路線バス</div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">14:43</span>
+                            <span class="activity">休屋着・休屋ぶらぶら散策</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">16:00</span>
+                            <span class="activity">休屋発</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">16:15</span>
+                            <span class="activity">十和田プリンスホテル着</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">17:30</span>
+                            <span class="activity">夕食</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4日目 -->
+            <div class="day-card">
+                <div class="day-header">
+                    <div class="day-number">4</div>
+                    <div class="day-title">帰路・温泉体験</div>
+                    <div class="day-date">6月15日（木）</div>
+                </div>
+
+                <!-- 晴天だった場合の最終日 -->
+                <div class="scenario">
+                    <div class="scenario-title">
+                        <span class="weather-icon">♨️</span>前日晴天の場合（✡）
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="time">08:20</span>
+                            <span class="activity">十和田プリンスホテル チェックアウト</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">08:30</span>
+                            <span class="activity">十和田プリンス発</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">10:09</span>
+                            <span class="activity">蔦温泉着・日帰り入浴・ランチ</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">14:39</span>
+                            <span class="activity">蔦温泉発</span>
+                            <div class="transport">🚌 路線バス</div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">16:29</span>
+                            <span class="activity">新青森駅着・早い夕食</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">17:22</span>
+                            <span class="activity">新青森発</span>
+                            <div class="transport">🚄 新幹線</div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">20:26</span>
+                            <span class="activity">上野着</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 雨天だった場合の最終日 -->
+                <div class="scenario weather-b">
+                    <div class="scenario-title">
+                        <span class="weather-icon">🚢</span>前日雨天の場合（◉）
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <span class="time">朝食前</span>
+                            <span class="activity">ホテルスタッフによる散策ガイド</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">10:20</span>
+                            <span class="activity">十和田プリンスホテル チェックアウト</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">11:00</span>
+                            <span class="activity">十和田プリンス発</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">11:15</span>
+                            <span class="activity">休屋着</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">11:45</span>
+                            <span class="activity">休屋発</span>
+                            <div class="transport">🚢 遊覧船</div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">12:35</span>
+                            <span class="activity">子ノ口着・ランチ</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">13:30</span>
+                            <span class="activity">休屋発</span>
+                            <div class="transport">🚌 路線バス</div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">16:29</span>
+                            <span class="activity">新青森駅着・早い夕食</span>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">17:22</span>
+                            <span class="activity">新青森発</span>
+                            <div class="transport">🚄 新幹線</div>
+                        </div>
+                        <div class="timeline-item">
+                            <span class="time">20:26</span>
+                            <span class="activity">上野着</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">🏞️ 主要観光スポット</h2>
+            
+            <div class="location-card">
+                <div class="location-name">🏨 ホテルメッツ八戸</div>
+                <div class="location-type">1日目宿泊 / 八戸駅直結</div>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-title">アクセス</div>
+                        <div>新幹線八戸駅改札から徒歩1分</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-title">特徴</div>
+                        <div>朝食付き・深夜チェックイン対応</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="location-card">
+                <div class="location-name">🌊 奥入瀬渓流</div>
+                <div class="location-type">自然散策スポット / 石ヶ戸～子ノ口</div>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-title">見どころ</div>
+                        <div>清流と緑豊かな渓谷美・複数の滝</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-title">散策時間</div>
+                        <div>約3-4時間（石ヶ戸→子ノ口）</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="location-card">
+                <div class="location-name">🏔️ 十和田湖</div>
+                <div class="location-type">カルデラ湖 / 遊覧船・ホテル滞在</div>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-title">アクティビティ</div>
+                        <div>遊覧船・湖畔散策・ホテルガイド付き散歩</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-title">宿泊</div>
+                        <div>十和田プリンスホテル（2泊）</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="location-card">
+                <div class="location-name">♨️ 蔦温泉</div>
+                <div class="location-type">秘湯温泉 / 日帰り入浴</div>
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-title">泉質</div>
+                        <div>単純温泉・美肌効果</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-title">楽しみ方</div>
+                        <div>温泉入浴・地元料理ランチ</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="tips-section">
+            <div class="tips-title">💡 旅行のポイント</div>
+            
+            <div class="tip-item">
+                <strong>🌦️ 天候対策</strong><br>
+                6月の東北は雨季にあたります。2つのプラン（晴天・雨天）を用意し、柔軟に対応できるよう準備。
+            </div>
+            
+            <div class="tip-item">
+                <strong>🚌 交通手段</strong><br>
+                路線バスが主要交通手段です。時刻表を事前確認し、乗り遅れないよう注意。
+            </div>
+            
+            <div class="tip-item">
+                <strong>👟 服装・持ち物</strong><br>
+                奥入瀬渓流散策用の歩きやすい靴、雨具、温泉用タオルをお忘れなく。
+            </div>
+            
+            <div class="tip-item">
+                <strong>🚢 遊覧船</strong><br>
+                十和田湖遊覧船は天候により運休の場合があります。運行状況は当日確認を。
+            </div>
+        </div>
+    </main>
+</div>
+```
+
+</body>
+</html>
